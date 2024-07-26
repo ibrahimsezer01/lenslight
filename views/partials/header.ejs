@@ -1,0 +1,48 @@
+<header class="header-area">
+    <div class="container-fluid">
+       <div class="row ">
+         
+          <div class=" col-md-2 col-sm-3">
+             <div class="logo">
+                <a href="/">lens<br><span>light</span></a>
+             </div>
+          </div>
+          <div class="col-md-8 col-sm-9">
+             <div class="navbar-area">
+                <nav class="site-navbar">
+                   <ul>
+                     
+                     <% if (user) { %>
+                      
+                        <li><a href="/" class="<%= page_name == "home" ? "active" : "" %>">Home</a></li>
+                        <li><a href="/about" class="<%= page_name == "about" ? "active" : "" %>">About</a></li>
+                        <li><a href="/photos" class="<%= page_name == "photos" ? "active" : "" %>">Photos</a></li>
+                        <li><a href="/users" class="<%= page_name == "users" ? "active" : "" %>">Users</a></li>
+                        <li><a href="/contact" class="<%= page_name == "contact" ? "active" : "" %>">Contact</a></li>
+                        <li><a href="/dashboard" class="<%= page_name == "dashboard" ? "active" : "" %>">Dashboard</a></li>
+                        <li><a href="/logout" class="<%= page_name == "login" ? "active" : "" %>">Logout</a></li>
+
+                     <% } else { %>
+
+                        <li><a href="login" class="<%= page_name == "login" ? "active" : "" %>">Log in</a></li>
+                        <li><a href="register" class="<%= page_name == "register" ? "active" : "" %>">Register</a></li>
+                        
+                        <% } %> 
+                        
+                     </ul>
+   
+                   <button class="nav-toggler">
+                   <span></span>
+                   </button>
+                </nav>
+             </div>
+          </div>
+          <div class="search">
+            <input type="text" placeholder="Search..." class="search__input">
+            <button class="search__button">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+       </div>
+    </div>
+ </header>

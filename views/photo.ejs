@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head.ejs') %>
+
+   <!-- body -->
+
+   <body class="main-layout inner_page">
+      <!-- loader  -->
+      <div class="loader_bg">
+         <div class="loader"><img src="/images/loading.gif" alt="#" /></div>
+      </div>
+      <!-- end loader -->
+
+      <!-- header -->
+      <%- include('./partials/header.ejs') %>
+
+         <!-- end header inner -->
+         <!-- about -->
+         <div class="about my-5">
+            <div class="container">
+               <div class="row">
+                  <div class="col-md-6">
+                     <div class="titlepage text_align_left">
+                        <h3 style="font-size:24px !important ;">
+                           <%= photo.name %>
+                        </h3>
+                        <p>
+                           <%= photo.description %>
+                        </p>
+                        <a class="read_more" href="/user/<%= photo.user._id %>">
+                           Artist: <%= photo.user.username %>
+                        </a>
+
+                        <% if (isOwner) { %>
+                           <div class="mt-3">
+                           <ul class="d-flex justify-content-between">
+                              <li><button class="read_more" style="min-width: 266px;" data-toggle="modal" data-target="#updateModal">Update</button></li>
+                              <li><a class="read_more" style="min-width: 266px;" onclick="return confirm('Do You Want To Delete The Photo')" href="/photo/delete/<%= photo._id %>?_method=DELETE">Delete</a></li>
+                           </ul>
+                        </div>
+                        <% } %>
+                        
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="about_img">
+                        <figure><img style="z-index:1 ;" src="<%= photo.url %>" alt="<%= photo.name %>" /></figure>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- end about -->
+
+         <!-- end footer -->
+         <%- include('./partials/footer.ejs') %>
+            <!-- end footer -->
+
+            <!-- models -->
+            <div id="updateModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+               aria-hidden="true">
+               <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                           <span aria-hidden="true">&times;</span>
+                        </button>
+                     </div>
+                     <div style="margin-top: 50px; margin-bottom: 50px;" class="container">
+                        <div class="row">
+                           <div class="col-md-12 ">
+                              <div class="text_align_center">
+                                 <h2 style="
+                     font-size: 30px;
+                     margin-bottom: 20px;
+                     color: #D43A8E;
+                 ">Add New Photo</h2>
+                              </div>
+                           </div>
+                           <div class="col-md-10 offset-md-1">
+                              <form id="request" class="main_form" method="POST" action="/photo/update/<%= photo._id %>?_method=PUT"
+                                 enctype="multipart/form-data">
+                                 <div class="row">
+                                    <div class="col-md-12">
+                                       <input class="form_control" placeholder="Name" type="text" name="name" value="<%= photo.name %>">
+                                    </div>
+                                    <div class="col-md-12">
+                                       <textarea name="description" style="height: 150px;" class="form_control"
+                                          placeholder="Description" rows="5"><%= photo.description %></textarea>
+                                    </div>
+
+                                    <div style="margin-bottom: 20px ;" class="col-md-12">
+                                       <input type="file" class="form-control-file" name="image">
+                                    </div>
+
+                                    <div class="col-md-12">
+                                       <div class="group_form">
+                                          <button class="read_more">Upload File</button>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </form>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- models end -->
+
+            <!-- Javascript files-->
+            <%- include('./partials/scripts.ejs') %>
+
+   </body>
+
+</html>
